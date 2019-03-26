@@ -1,5 +1,5 @@
  HelloWorld
-  This is an example of printing hello world.
+  This is an example of printing hello world.\n
  MatrixDemonstration
    This is an example of using a matrix.
  p2_Break
