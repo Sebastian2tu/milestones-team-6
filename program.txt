@@ -1,0 +1,7 @@
+Our program will implement the columnsort algorithm in MATLAB. This will sort a list of integers that are passed in through a file.
+We feel that this would be the best way to showcase MATLAB as it is a language based on matrixes, and this algorithm focuses on sorting values via a matrix.
+
+We expect the program to have numerous functions related matrix manipulation, one to read in the list of integers,
+and a couple for outputting purposes and sorting.
+
+We expect the program to be approximately 300 lines.
