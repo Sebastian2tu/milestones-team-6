@@ -95,3 +95,6 @@ p3_practical_application
 
 p3_string
 	This is an example of a string data type.
+
+p3_arrays
+	This is an example of integer arrays and string arrays.
