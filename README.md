@@ -53,3 +53,45 @@ p2_Try_Catch
 p2_While_Loop
    
 	This is an example of a while loop.
+	
+p3_float
+	This is an example of a float data type.
+
+p3_int
+	This is an example of an integer data type.
+
+p3_uint
+	This is an example of an unsigned int data type.
+
+p3_double
+	This is an example of a double data type.
+
+p3_error_arithmetic
+	This is an example of an arithmetic error.
+
+p3_error_array_indexing
+	This is an example of an array indexing error.
+
+p3_error_assignment
+	This is an example of an assignment error.
+
+p3_error_control_flow
+	This is an example of a control flow error.
+
+p3_error_function_calling
+	This is an example of a function calling error.
+
+p3_error_runtime
+	This is an example of a runtime error.
+
+p3_error_struct_array
+	This is an example of a array usage error.
+
+p3_error_syntax
+	This is an example of a syntax error.
+
+p3_practical_application
+	This is an example of a sort code.
+
+p3_string
+	This is an example of a string data type.
