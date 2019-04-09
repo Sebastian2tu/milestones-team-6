@@ -98,3 +98,20 @@ p3_string
 
 p3_arrays
 	This is an example of integer arrays and string arrays.
+
+p4_newClass
+        A basic example of writing a class with properties and methods.
+p4_adder_function
+        An example of a function, takes two arguments and returns the added sum.
+p4_money_change
+	This uses classes and functions to take input from user (dollar value), and output in the largest bills and coins.
+	Example:
+	   a = p4_money_change
+	   a.main
+	   How much money do you want? 46.78
+	   I will give you: 
+		2 20 bills
+		1 5 bill
+		1 1 bill
+		3 quarters
+		3 pennies
