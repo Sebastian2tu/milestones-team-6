@@ -17,8 +17,7 @@ function [sorted] = ColumnSort(filename)
     disp("Number of columns in column: " + closest_pair(2));
     
     %step1 sort Matrix
-    sortMatrix(matrix);
-    disp(matrix)
+    matrix = sortMatrix(matrix);
 end
 
 function [closest_pair] = readDimensions(mat_length)
@@ -66,7 +65,7 @@ function matrix = toMatrix(nums, numRows,numCols)
     end
 end
     
-function sortMatrix(matrix)
+function result = sortMatrix(matrix)
     % Sorts each column of the matrix via mergesort in-place.
 	% Parameters: a 2-D matrix
 	% Modifies the array in place
@@ -74,10 +73,8 @@ function sortMatrix(matrix)
     cols = length(matrix(1,:));
     for c=1:cols
         toSort = matrix(:,c);
-        disp(toSort)
-        sortColumn(toSort,1,length(toSort));
-        disp(toSort)
-        matrix(:,c) = toSort;
+        sorted = sortColumn(toSort,1,length(toSort));
+        matrix(:,c) = sorted;
     end
 end
 
@@ -86,11 +83,11 @@ function sortColumn(sequence, left,right)
     % Sort function that takes in an array of integers and a left and right index
     % to represent the subarray to be sorted. This function will first split the subarray
     % in roughly equal halves, sort those, then merge the subarrays together.
-    if (left < right)
-        middle = floor((left + right )/ 2);
+	if (left < right)
+        middle = floor(left + right / 2)
         sortColumn (sequence, left, middle);
         sortColumn(sequence, middle + 1, right);
-        merge(sequence, left,middle+1, right);
+        merge(sequence, left, right);
     end
 end
 
@@ -101,33 +98,24 @@ function merge(sequence, lIndex, mIndex, rIndex)
     size1 = mIndex - lIndex + 1;
     size2 = rIndex - mIndex;
     
-    left = sequence(lIndex:mIndex);
-    right = sequence(mIndex+1: rIndex);
+    left = sequence(lIndex:mIndex)
+    right = sequence(mIndex+1: rIndex)
     
-    i=1;
-    j=1;
+    i=0;
+    j=0;
     k = lIndex;
     while (i < size1 && j < size2)
-        if (left(i) <= right(j))
+        if (left(i) <= right(j)
             sequence(k) = left(i);
-            i= i +1
+            i+=1;
         else 
             sequence(k) = right(j);
-            j= j + 1;
+            j+=1;
         end
-        k=k+1;
+        k+=1;
     end
     while (i < size1)
-        sequence(k) = left(i)
-        i=i +1;
-        k= k +1;
-    end
-    while (j < size2)
-        sequence(k) = right(j)
-        j = j+1;
-        k = k+1;
-    end
-end
+        sequence(
     
 % 
 % 
