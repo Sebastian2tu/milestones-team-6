@@ -17,8 +17,27 @@ function [sorted] = ColumnSort(filename)
     disp("Number of columns in column: " + closest_pair(2));
     
     %step1 sort Matrix
-    sortMatrix(matrix);
-    disp(matrix)
+    matrix = sortMatrix(matrix);
+    
+    %step2 transpose and reshape
+    matrix = matrix.';
+    matrix = reshape1(matrix);
+    
+    %step 3 sort columns
+    matrix = sortMatrix(matrix);
+    
+    % step 4 reshape inverse
+    matrix = reshapeInverse(matrix);
+    matrix = matrix.';
+    
+    %tep 5
+    matrix = sortMatrix(matrix);
+    
+    %step 6
+    matrix = shiftDownR2(matrix)
+    
+    
+    
 end
 
 function [closest_pair] = readDimensions(mat_length)
@@ -66,7 +85,7 @@ function matrix = toMatrix(nums, numRows,numCols)
     end
 end
     
-function sortMatrix(matrix)
+function result =  sortMatrix(matrix)
     % Sorts each column of the matrix via mergesort in-place.
 	% Parameters: a 2-D matrix
 	% Modifies the array in place
@@ -74,62 +93,60 @@ function sortMatrix(matrix)
     cols = length(matrix(1,:));
     for c=1:cols
         toSort = matrix(:,c);
-        disp(toSort)
-        sortColumn(toSort,1,length(toSort));
-        disp(toSort)
-        matrix(:,c) = toSort;
+        %disp("A" + toSort)
+        matrix(:,c) = quickSort(toSort);
     end
+    result = matrix;
 end
 
-function sortColumn(sequence, left,right)
-    %sorts using mergeSort
-    % Sort function that takes in an array of integers and a left and right index
-    % to represent the subarray to be sorted. This function will first split the subarray
-    % in roughly equal halves, sort those, then merge the subarrays together.
-    if (left < right)
-        middle = floor((left + right )/ 2);
-        sortColumn (sequence, left, middle);
-        sortColumn(sequence, middle + 1, right);
-        merge(sequence, left,middle+1, right);
+
+function sortedArray = quickSort(array)
+    %This function implements the quicksort algorithm to sort a vector.
+    if numel(array) <= 1 %If the array has 1 element then it can't be sorted       
+        sortedArray = array;
+        return
     end
+ 
+    pivot = array(end);
+    array(end) = [];
+ 
+    sortedArray = [quickSort( array(array <= pivot) ) pivot quickSort( array(array > pivot) )];
+ 
 end
 
-function merge(sequence, lIndex, mIndex, rIndex)
-    % Helper function for mergesort. Merges two "partitions" of the array
-    % that are given by the parameters left, middle, and right. 
-    % The first partition is from lIndex to middle. and the other partition is from middle to rIndex.
-    size1 = mIndex - lIndex + 1;
-    size2 = rIndex - mIndex;
-    
-    left = sequence(lIndex:mIndex);
-    right = sequence(mIndex+1: rIndex);
-    
-    i=1;
-    j=1;
-    k = lIndex;
-    while (i < size1 && j < size2)
-        if (left(i) <= right(j))
-            sequence(k) = left(i);
-            i= i +1
-        else 
-            sequence(k) = right(j);
-            j= j + 1;
+function result = reshape1(matrix)
+    %Reshapes the matrix by taking each row from the sxr Matrix
+	% and changing it to a r/s xs submatrix.
+    rows = length(matrix(1,:));
+    cols = length(matrix(:,1));
+    result = zeros(rows,cols);
+    for i=0:cols-1
+        for j=0:rows-1
+            result(i* floor(rows/cols) + floor(j/cols)+1,mod(j,cols)+1)= matrix(i+1,j+1);
         end
-        k=k+1;
-    end
-    while (i < size1)
-        sequence(k) = left(i)
-        i=i +1;
-        k= k +1;
-    end
-    while (j < size2)
-        sequence(k) = right(j)
-        j = j+1;
-        k = k+1;
     end
 end
+
+function result = reshapeInverse(matrix)
+    rows = length(matrix(:,1));
+    cols = length(matrix(1,:));
+    result = zeros(cols,rows);
     
-% 
+    for i=0:rows-1
+        for j=0:cols-1
+            result(floor(i/(rows/cols))+1,mod(i*cols+j,rows)+1) =  matrix(i+1,j+1);
+        end
+    end
+end
+
+
+function result = shiftDownR2(matrix)
+    disp(matrix)
+    intmin('int64');
+    result = reshape(matrix,1,[]).'
+    result = 
+    
+end
 % 
 % function [mat] = sortColumns(matrix)
 % end
